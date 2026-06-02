@@ -1,0 +1,41 @@
+import { useState } from "react"
+
+import type { Character, Card } from "../types"
+
+interface AddCardFormProps {
+    characters: Character[]
+    setCards: React.Dispatch<React.SetStateAction<Card[]>>
+}
+
+export default function AddCardForm({characters, setCards}: AddCardFormProps) {
+    const [title, setTitle] = useState("")
+    const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
+
+
+    function handleSubmit() {
+        if (!title || !selectedCharacter) return
+
+        setCards(prev => [...prev, {
+            id: crypto.randomUUID(),
+            title,
+            column: "todo",
+            character: selectedCharacter
+        }])
+
+        setTitle("")
+        setSelectedCharacter(null)
+    }
+    
+    return (
+        <div>
+        <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Card title" />
+        <select onChange={e => setSelectedCharacter(characters.find(c => c.id === e.target.value) ?? null)}>
+            <option value="">Select a character</option>
+            {characters.map(character => (
+            <option key={character.id} value={character.id}>{character.name}</option>
+            ))}
+        </select>
+        <button onClick={handleSubmit}>Add Card</button>
+        </div>
+    )
+}
