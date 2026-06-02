@@ -16,7 +16,7 @@ export default function Board({cards, setCards}: BoardProps) {
 
     return (
     <DndContext onDragEnd={handleDragEnd}>
-        <div>
+        <div className="board">
             {COLUMNS.map(column => (
                 <Column key={column.id} column={column} cards={cards.filter(c => c.column === column.id)} />
             ))}

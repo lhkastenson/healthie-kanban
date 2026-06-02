@@ -13,7 +13,7 @@ export default function Column({column, cards}: ColumnProps) {
     const { setNodeRef } = useDroppable({ id: column.id })
 
     return (
-    <div>
+    <div className="column">
         <h2>{column.title}</h2>
         <div ref={setNodeRef}>
             <SortableContext items={cards.map(c => c.id)} strategy={verticalListSortingStrategy}>
