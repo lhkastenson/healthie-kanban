@@ -207,3 +207,29 @@
   cursor: grab;
   box-shadow: var(--shadow);
 }
+
+.add-card-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px 0;
+}
+
+.add-card-form input,
+.add-card-form select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 14px;
+}
+
+.add-card-form button {
+  padding: 8px 16px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  bortder-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}

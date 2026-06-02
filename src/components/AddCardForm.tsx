@@ -27,7 +27,7 @@ export default function AddCardForm({characters, setCards}: AddCardFormProps) {
     }
     
     return (
-        <div>
+        <div className="add-card-form">
         <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Card title" />
         <select onChange={e => setSelectedCharacter(characters.find(c => c.id === e.target.value) ?? null)}>
             <option value="">Select a character</option>

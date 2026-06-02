@@ -16,8 +16,10 @@ function App() {
 
   return (
     <div>
-      <h1>Healthie Kanban</h1>
+      <h1 className="h1">Healthie Kanban</h1>
+      <hr />
       <AddCardForm characters={characters} setCards={setCards} />
+      <hr />
       <Board cards={cards} setCards={setCards} />
     </div>
   )
