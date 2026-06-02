@@ -1,4 +1,4 @@
-import { closestCenter, DndContext, type DragEndEvent, type DragStartEvent } from "@dnd-kit/core"
+import { closestCenter, DndContext, DragOverlay, type DragEndEvent, type DragStartEvent } from "@dnd-kit/core"
 import { arrayMove } from "@dnd-kit/sortable"
 import confetti from "canvas-confetti"
 import { useState } from "react"
@@ -6,6 +6,7 @@ import { useState } from "react"
 import type { Card as CardType, ColumnId } from "../types"
 import { COLUMNS } from "../constants"
 import Column from "./Column"
+import Card from "./Card"
 
 interface BoardProps {
   cards: CardType[]
@@ -49,6 +50,9 @@ export default function Board({cards, setCards}: BoardProps) {
 
     return (
     <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
+        <DragOverlay>
+            {activeId ? <Card card={cards.find(c => c.id === activeId)!} /> : null}
+        </DragOverlay>
         <div className="board">
             {COLUMNS.map(column => (
                 <Column key={column.id} column={column} cards={cards.filter(c => c.column === column.id)} />
