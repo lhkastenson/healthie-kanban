@@ -12,7 +12,8 @@ export default function AddCardForm({characters, setCards}: AddCardFormProps) {
     const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
 
 
-    function handleSubmit() {
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault()
         if (!title || !selectedCharacter) return
 
         setCards(prev => [...prev, {
@@ -27,15 +28,15 @@ export default function AddCardForm({characters, setCards}: AddCardFormProps) {
     }
     
     return (
-        <div className="add-card-form">
-        <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Card title" />
-        <select onChange={e => setSelectedCharacter(characters.find(c => c.id === e.target.value) ?? null)}>
-            <option value="">Select a character</option>
-            {characters.map(character => (
-            <option key={character.id} value={character.id}>{character.name}</option>
-            ))}
-        </select>
-        <button onClick={handleSubmit}>Add Card</button>
-        </div>
+        <form className="add-card-form" onSubmit={handleSubmit}>
+            <select onChange={e => setSelectedCharacter(characters.find(c => c.id === e.target.value) ?? null)} value={selectedCharacter?.id ?? ""}>
+                <option value="">Select a character</option>
+                {characters.map(character => (
+                <option key={character.id} value={character.id}>{character.name}</option>
+                ))}
+            </select>
+            <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Card title" />
+            <button type="submit">Add Card</button>
+        </form>
     )
 }
