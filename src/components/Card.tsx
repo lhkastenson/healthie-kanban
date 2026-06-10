@@ -17,12 +17,12 @@ export default function Card({card}: CardProps) {
     }
     
     return (
-    <div className="card" ref={setNodeRef} style={style} {...attributes} {...listeners}>
-        <h2>{card.title}</h2>
-        <div>
+        <div className="card" ref={setNodeRef} style={style} {...attributes} {...listeners}>
+        <h3>{card.title}</h3>
+        <div className="card-character">
             <span>{card.character.name}</span>
             <img src={card.character.image} alt={card.character.name} />
         </div>
-    </div>
+        </div>
     )
 }
